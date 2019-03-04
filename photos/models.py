@@ -9,13 +9,26 @@ class Images(models.Model):
     title = models.CharField(max_length = 60)
     description = models.CharField(max_length = 60)
     image = models.ImageField(upload_to = 'articles/')
-    category = models.ManytToManyField(Categories)
+    category = models.ForeignKey(Category)
+    location = models.ForeignKey(Location)
+
+     def __str__(self):
+        return self.title
+
+    def save_image(self):
+        self.save()
+
+    def delete_image(self):
+        self.delete()
 
 class Location(models.Model):
-    name = models.CharField(max_length = 30)
+    location_name = models.CharField(max_length = 30)
 
     def __str__(self):
-        return self.name
+        return self.location_name
 
-class Categories(models.Model):
-    name = models.CharField(max_length = 60)
+class Category(models.Model):
+    category_name = models.CharField(max_length = 60)
+
+    def __str__(self):
+        return self.category_name
