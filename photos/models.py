@@ -9,9 +9,13 @@ class Images(models.Model):
     title = models.CharField(max_length = 60)
     description = models.CharField(max_length = 60)
     image = models.ImageField(upload_to = 'articles/')
+    category = models.ManytToManyField(Categories)
 
-class tags(models.Model):
+class Location(models.Model):
     name = models.CharField(max_length = 30)
 
     def __str__(self):
         return self.name
+
+class Categories(models.Model):
+    name = models.CharField(max_length = 60)
