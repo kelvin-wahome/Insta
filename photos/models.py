@@ -46,4 +46,9 @@ class Images(models.Model):
         filter_by_location = cls.objects.filter_by(location__location_name__icontains=location)
         return filter_by_location
 
+    @classmethod
+    def get_image_by_id(cls,input_id):
+        get_image_by_id = cls.objects.get(id=input_id)
+        return get_image_by_id
+
     
