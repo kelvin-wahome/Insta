@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from django.db import models
 
 # Create your models here.
@@ -11,10 +8,11 @@ class Location(models.Model):
         return self.location_name
 
 class Category(models.Model):
-    category_name = models.CharField(max_length = 60)
-    def save_image(self):
+    name = models.CharField(max_length = 60)
+    def save_category(self):
         self.save()
-
+    def delete_category(self):
+        self.delete()
 
     def __str__(self):
         return self.category_name
@@ -37,18 +35,21 @@ class Images(models.Model):
         self.delete()
 
     @classmethod
-    def search_by_category(cls,search_term):
-        result_search = cls.objects.filter(category__category_name__icontains=search_term)
-        return result_search
+    def search_image(cls,category):
+        result_search = cls.objects.filter(category__name__icontains=search_term)
+        return images
 
     @classmethod
-    def filter_by_location(cls,location):
-        filter_by_location = cls.objects.filter_by(location__location_name__icontains=location)
-        return filter_by_location
+    def filter_by_location(cls,id):
+        images = cls.objects.filter(location_id=id)
+        return images
+
+     @classmethod
+    def filter_by_category(cls, id):
+        images = cls.objects.filter(category_id=id)
+        return images
 
     @classmethod
-    def get_image_by_id(cls,input_id):
-        get_image_by_id = cls.objects.get(id=input_id)
-        return get_image_by_id
-
-    
+    def get_all_images(cls):
+        images = cls.objects.order_by()
+        return images
