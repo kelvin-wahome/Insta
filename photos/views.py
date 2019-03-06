@@ -10,8 +10,15 @@ def index(request):
     Function that renders the index page
     '''
 
-    photos = Image.get_all_images()
+    photos = Images.get_all_images()
     return render (request, 'index.html',{"photos":photos})
+
+def image(request,image_id):
+    try:
+        image = Images.objects.get(id = image_id)
+    except DoesNotExist:
+        raise Http404()
+    return render(request,"search.html", {"image":image})
 
 def search_image(request):
     '''
@@ -19,7 +26,7 @@ def search_image(request):
     '''
     if 'image' in request.GET and request.GET["image"]:
         category = request.GET.get("image")
-        searched_images = Image.search_image(category)
+        searched_images = Images.search_image(category)
         message = f"{category}"
 
         return render(request, 'search.html',{"message":message,"images": searched_images})
