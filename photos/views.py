@@ -26,3 +26,10 @@ def search_image(request):
     else:
         message = ".You haven't searched for any category"
         return render(request, 'search.html',{"message":message})
+
+def filter_by_location(request,location_id):
+    '''
+    Filters the database and displays images according to location_id
+    '''
+    images = Image.filter_by_location(id=location_id)
+    return render(request, 'location.html', {"images": images})
