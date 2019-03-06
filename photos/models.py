@@ -19,7 +19,7 @@ class Category(models.Model):
 
 class Images(models.Model):
 
-    title = models.CharField(max_length = 60)
+    name = models.CharField(max_length = 60)
     description = models.CharField(max_length = 60)
     image = models.ImageField(upload_to = 'articles/')
     category = models.ForeignKey(Category)
@@ -44,7 +44,7 @@ class Images(models.Model):
         images = cls.objects.filter(location_id=id)
         return images
 
-     @classmethod
+    @classmethod
     def filter_by_category(cls, id):
         images = cls.objects.filter(category_id=id)
         return images
