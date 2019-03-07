@@ -6,7 +6,7 @@
 Kelvin Wahome
 
 ## Link to Deployed Site on Heroku
-https://imgsplash.herokuapp.com/
+https://insta6996.herokuapp.com/
 
 ## Installation Requirements
 - Create Directory on your computer to store the application.
