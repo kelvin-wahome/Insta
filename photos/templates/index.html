@@ -1,0 +1,227 @@
+{% extends 'base.html'%}
+
+{% block content%}
+
+<br>
+<br>
+<div class="container-fluid search">
+  <div class="col-xs-12 col-sm-6 col-md-12 contents">
+    <div class="container image">
+      <!-- <h2 id="title"><b>Welcome To ImageSplash</b></h2> -->
+      <form class="form" role="search" action="{% url 'search_image' %}">
+
+        <div class="input-group">
+          <input type="text" class="form-control input" placeholder=" Search image by category" name="image">&nbsp;&nbsp;   <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="button"><i class="fas fa-search"></i></button>
+          <br>
+        </div>
+
+        <p class="searches" style=" color:#ece3d1;;font-family: 'Lora', serif;font-size: 23px;text-align: center !important;padding-right: 170px;">Trending searches:Music,Sports etc</p>
+
+      </form>
+    </div>
+  </div>
+</div>
+<body>
+  <br>
+  <div class="container" style="background: rgb(22, 29, 37);">
+    <div class="row">
+      {% for photo in photos %}
+      <div class="col-xs-12 col-sm-6 col-md-4 images">
+        <div class="thumbnail" style="width:100% !important;">
+          <img src="{{photo.image.url}}"  data-toggle="modal" data-target="#exampleModalCenter{{photo.id}}" class = "img-responsive imagee" alt="" style="height:400px;width: 100% !important;position: center;size: cover;">
+
+
+          <!-- Modal -->
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="modal fade" style="width:100% !important;" id="exampleModalCenter{{photo.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content" style="font-family: 'Lora', serif;background: rgb(29, 29, 29); color:#d6d3cd;">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle" style="font-size:40px;"><b>{{photo.name}}</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <img src="{{photo.image.url}}"  class = "img-responsive" alt="" style="height:500px;width: 100%;">
+                  </div>
+                  <div class="modal-body">
+                    <form action="">
+                      <input type="text" value="https://imgsplash.herokuapp.com{{photo.image.url}}" id="" style="width:100%;height:40px;">
+                      <br>
+                      <button type="button" class="btn btn-outline-success" style="float:right;" value="https://imgsplash.herokuapp.com{{photo.image.url}}" onclick="copyLink(this.value)"  >Copy Link&nbsp;<i class="fas fa-copy"></i></button>
+                    </form>
+                    <br>
+                    <br>
+                    <p style="font-size:22px;padding-right: 70px;"><b>Category:</b> {{photo.category}}</p>
+                    <p style="font-size:22px;padding-right: 70px;"><b><i class="fas fa-map-marker-alt"></i>&nbsp;:&nbsp;</b>{{photo.location}}</p>
+                    <p style="font-size:22px;padding-right: 70px;"><b>Description:</b> {{photo.description}}</p>
+
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-success" data-dismiss="modal">Close &nbsp;<i class="fas fa-times"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+      </div>
+      <script>
+        function copyLink(value) {
+          console.log('copied link')
+          function handler(event){
+            event.clipboardData.setData('text/plain', value);
+            event.preventDefault();
+            document.removeEventListener('copy', handler, true);
+          }
+          document.addEventListener('copy', handler, true);
+          document.execCommand('copy');
+
+          alert("Image link has been successfully copied")
+        }
+
+      </script>
+      {% endfor %}
+    </div>
+  </div>
+  <br>
+  <div class="container-fluid footer" style="width:100% !important;">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <br>
+      <br>
+
+      <center>
+        <h4 style="
+        color:#ece3d1;font-size: 23px;"><b><i class="fas fa-comment-dots" style="font-size:25px;"></i>&nbsp;For any comments,suggestions or inquiries about this application,contact me via :</b></h4>
+        <br>
+        <a href="https://www.facebook.com/giftokizzer" target="__blank"><i class="fab fa-facebook"></i></a>
+        &nbsp;
+        <a href="https://www.instagram.com/__lumumba__/" target="__blank"><i class="fab fa-instagram"></i></a>
+        &nbsp;
+        <a href="https://github.com/Gift-Lumumba" target="__blank"><i class="fab fa-github"></i></a>
+        &nbsp;
+        <a href="https://mail.google.com/mail/u/0/#inbox" target="__blank"><i class="fas fa-envelope"></i></a>
+        &nbsp;
+        <br>
+        <br>
+      </center>
+    </div>
+  </div>
+</body>
+
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Nunito|Lora|Oleo+Script+Swash+Caps');
+
+  body{
+    background: #d6d5d5;
+  }
+
+  .search{
+    background: url(/static/photos/cam.jpeg);
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+    background-size:cover;
+    background-position: center;
+    height: 100%;
+
+  }
+  .searchh{
+    color:#ece3d1;;
+  }
+  .input{
+    height: 40px;
+    font-family: 'Lora', serif;
+  }
+  .searches{
+    width: 100px;
+    height: 100px;
+    position: relative;
+  }
+  ::placeholder{
+    font-family: 'Lora', serif;
+    font-size: 19px;
+    color: rgb(51, 51, 51) !important;
+  }
+  #button{
+    font-family: 'Lora', serif;
+  }
+  .image{
+    padding-top: 70px;
+  }
+
+  #title{
+    font-family: 'Lora', serif;
+    font-size: 60px;
+  }
+  /*--Banner--*/
+  div.container.image{
+    padding: 6em 0 0;
+  }
+  div.container.imageloc{
+    padding: 4em 0 0;
+  }
+  .search h2{
+    padding-bottom: 20px;
+  }
+  .search-1 h2{
+    color: #c3c3c3;
+    text-align: center;
+    padding-top: 40px;
+  }
+  .contents{
+    min-height: 450px;
+    width: inherit;
+    padding-top: 70px;
+
+  }
+  .contents-1{
+    min-height: inherit;
+    width: inherit;
+    background: rgba(0,0,0,0.8)
+  }
+  .search h2 {
+    font-size:2.5em;
+    font-weight: 600;
+    color: #fff;
+  }
+  .search {
+    text-align: center;
+  }
+  .search p {
+    font-size: 1.2em;
+    color: rgba(255, 255, 255, 0.46);
+    font-weight: 400;
+    margin: 5em auto 1em;
+    width: 50%;
+  }
+  .imagee{
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    border-radius: 10px;
+    width: 100% !important;
+  }
+  .imagee:hover{
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    opacity: 0.7;
+    overflow: hidden;
+    transition: .5s ease;
+    transform: translateY(-7px);
+  }
+  .footer{
+    background: rgb(27, 35, 43);
+    height: 100% !important;
+  }
+  center{
+    color:#ece3d1;
+    font-family: 'Lora', serif;
+  }
+  center i{
+    color:#ece3d1;
+    font-size: 30px;
+  }
+</style>
+{% endblock %}

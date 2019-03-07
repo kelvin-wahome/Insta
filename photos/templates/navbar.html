@@ -1,17 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Oleo+Script+Swash+Caps+Lora" rel="stylesheet">
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <!-- <a class="navbar-brand" href="{% url 'newsToday' %}">The Moringa Tribune</a> -->
-    </div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar">
+  <a class="navbar-brand head" href="/" id="gallery">&nbsp;<b>Insta</b></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown dropdown">
+        <a class="nav-link dropdown-toggle locations" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#ece3d1;">
+          Locations&nbsp;<i class="fas fa-map-marker-alt"></i>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background:rgb(32, 32, 32)">
+          <a class="dropdown-item" href="/location/1">Toronto</a>
+          <a class="dropdown-item" href="/location/2">Jamaica</a>
+          <a class="dropdown-item" href="/location/3">Mauritius</a>
+          <a class="dropdown-item" href="/location/4">London</a>
+          <a class="dropdown-item" href="/location/5">Paris</a>
+
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle categories" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#ece3d1;">
+          Categories
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background:rgb(32, 32, 32)">
+          <a class="dropdown-item" href="/category/1">Cities</a>
+          <a class="dropdown-item" href="/category/2">Sports</a>
+          <a class="dropdown-item" href="/category/3">Technology</a>
+          <a class="dropdown-item" href="/category/4">Nature</a>
+          <a class="dropdown-item" href="/category/5">Music</a>
+
+        </div>
+      </li>
+    </ul>
   </div>
 </nav>
-</body>
-</html>
+
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Nunito|Oleo+Script+Swash+Caps');
+
+  .navbar{
+    font-family: 'Lora', serif;
+    width: 100%;
+    font-size: 20px;
+    position: fixed;
+    z-index: 1;
+
+  }
+  #gallery{
+    font-size: 30px;
+
+  }
+  .dropdown-item{
+    color:#ece3d1;
+  }
+
+  .head{
+    color:#ece3d1 !important;
+  }
+  .head:hover{
+    color: green !important;
+  }
+  .categories:hover{
+    color: green !important;
+  }
+  .locations:hover{
+    color: green !important;
+  }
+
+</style>

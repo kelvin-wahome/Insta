@@ -2,31 +2,32 @@ from django.db import models
 
 # Create your models here.
 class Location(models.Model):
-    location_name = models.CharField(max_length = 30)
+    name = models.CharField(max_length = 30)
 
     def __str__(self):
-        return self.location_name
+        return self.name
 
 class Category(models.Model):
     name = models.CharField(max_length = 60)
+
+    def __str__(self):
+        return self.name
     def save_category(self):
         self.save()
     def delete_category(self):
         self.delete()
 
-    def __str__(self):
-        return self.category_name
 
-class Images(models.Model):
+class Image(models.Model):
 
-    name = models.CharField(max_length = 60)
-    description = models.CharField(max_length = 60)
-    image = models.ImageField(upload_to = 'articles/')
+    image = models.ImageField(upload_to='images/')
+    name = models.CharField(max_length=40)
+    description = models.TextField()
     category = models.ForeignKey(Category)
     location = models.ForeignKey(Location)
 
     def __str__(self):
-        return self.title
+        return self.name
 
     def save_image(self):
         self.save()
@@ -35,14 +36,14 @@ class Images(models.Model):
         self.delete()
 
     @classmethod
-    def search_image(cls,category):
-        result_search = cls.objects.filter(category__name__icontains=search_term)
+    def get_all_images(cls):
+        images = cls.objects.order_by()
         return images
 
     @classmethod
-    def filter_by_location(cls,id):
-        images = cls.objects.filter(location_id=id)
-        return images
+    def get_image(cls, id):
+        image = cls.objects.get(id=id)
+        return image
 
     @classmethod
     def filter_by_category(cls, id):
@@ -50,6 +51,12 @@ class Images(models.Model):
         return images
 
     @classmethod
-    def get_all_images(cls):
-        images = cls.objects.order_by()
+    def filter_by_location(cls,id):
+        images = cls.objects.filter(location_id=id)
+        return images
+
+
+    @classmethod
+    def search_image(cls, category):
+        images = cls.objects.filter(category__name__icontains=category)
         return images

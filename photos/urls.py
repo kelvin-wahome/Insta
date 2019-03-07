@@ -5,7 +5,6 @@ from . import views
 
 urlpatterns=[
     url('^$',views.index,name = 'index'),
-    url('^$',views.index,name = 'index'),
     url(r'^search', views.search_image, name='search_image'),
     url(r'^image/(\d+)',views.image,name ='image'),
     url(r'location/(\d+)',views.filter_by_location,name ='location'),
